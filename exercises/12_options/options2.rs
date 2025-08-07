@@ -1,0 +1,41 @@
+fn main() {
+    // You can optionally experiment here.
+}
+
+#[cfg(test)]
+mod tests {
+    #[test]
+    fn simple_option() {
+        let target = "rustlings";
+        let optional_target = Some(target);
+
+        // TODO: Make this an if-let statement whose value is `Some`.
+        if let Some(value) = optional_target {
+            assert_eq!(value, target);
+        } else {
+            panic!("Expected Some, got None");
+        }
+    }
+
+    #[test]
+    fn layered_option() {
+        let range = 10;
+        let mut optional_integers: Vec<Option<i8>> = vec![None];
+
+        for i in 1..=range {
+            optional_integers.push(Some(i));
+        }
+
+        let mut cursor = Some(range);
+
+        // TODO: Make this a while-let statement. Remember that `Vec::pop()`
+        // adds another layer of `Option`. You can do nested pattern matching
+        // in if-let and while-let statements.
+        while let Some(Some(integer)) = optional_integers.pop() {
+            assert_eq!(Some(integer), cursor);
+            cursor = cursor.and_then(|c| c.checked_sub(1));
+        }
+
+        assert_eq!(cursor, Some(0));
+    }
+}

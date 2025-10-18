@@ -42,7 +42,7 @@ fn build_scores_table(results: &str) -> HashMap<&str, TeamScores> {
         let team_1_scores = scores.get_mut(team_1_name).unwrap();
         team_1_scores.goals_scored += team_1_score;
         team_1_scores.goals_conceded += team_2_score;
-        
+
         let team_2_scores = scores.get_mut(team_2_name).unwrap();
         team_2_scores.goals_scored += team_2_score;
         team_2_scores.goals_conceded += team_1_score;

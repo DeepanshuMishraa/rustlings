@@ -19,8 +19,8 @@ impl SomeTrait for OtherStruct {}
 impl OtherTrait for OtherStruct {}
 
 // TODO: Fix the compiler error by only changing the signature of this function.
-fn some_func(item: ???) -> bool {
-    item.some_function() && item.other_function()
+fn some_func(item: &dyn SomeTrait) -> bool {
+    item.some_function()
 }
 
 fn main() {
@@ -33,7 +33,7 @@ mod tests {
 
     #[test]
     fn test_some_func() {
-        assert!(some_func(SomeStruct));
-        assert!(some_func(OtherStruct));
+        assert!(some_func(&SomeStruct));
+        assert!(some_func(&OtherStruct));
     }
 }
